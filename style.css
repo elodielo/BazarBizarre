@@ -1,0 +1,32 @@
+.enLigne {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+#placeDeJeu {
+    border: 2px solid black;
+    height: 50vh;
+    width: 65vw;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.centre {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center ;
+}
+
+#lancerJeu {
+    margin: 1.5em;
+}
+
+img {
+    width: 15vh;
+}
