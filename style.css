@@ -1,14 +1,38 @@
+body {
+    background-color: grey;
+}
+
+header {
+    border-bottom: 2px solid green ;
+}
+
+#decompteScore {
+    margin-right: 6%;
+}
+
+#regleJeu {
+    margin-left : 6%;
+}
+
+#compteScore, #decompteTemps {
+    border: 2px solid black;
+    padding-right: 10%;}
+
 .enLigne {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-
 #placeDeJeu {
     border: 2px solid black;
+    border-radius: 3%;
     height: 50vh;
     width: 65vw;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 header{
@@ -19,14 +43,26 @@ header{
 .centre {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     align-items: center ;
 }
 
 #lancerJeu {
     margin: 1.5em;
+
 }
 
-img {
-    width: 15vh;
+.bouton img {
+    width: 15vh;   
+}
+
+#placeJeu img {
+    padding : 5%;
+}
+
+.bouton {
+    border: 2px solid black;
+    border-radius: 50%;
+    padding: 1%;
+    background-color: rgb(255, 255, 255);
 }
