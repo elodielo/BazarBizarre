@@ -1,22 +1,57 @@
-import { Cartes } from "./Carte.js";
-
-const tableauCouleur = ["blanc", "gris", "rouge" ,"vert", "bleu"];
-const tableauForme = ["fantome", "sucette", "montagne", "crabe", "livre"]
-
+import { Cartes } from "./class/Carte.js";
 
 let boutonLancerJeu = document.getElementById("lancerJeu");
 let endroitOuJeu = document.getElementById("placeDeJeu");
 let endroitTimer = document.querySelector("#decompteTemps h3");
-let endroitScore = document.querySelector("#compteScore h3")
+let endroitScore = document.querySelector("#compteScore h3");
+let endroitRegle = document.getElementById("regleJeu")
+let boutonMontagne = document.getElementById("boutonMontagne")
+let boutonCrabe = document.getElementById("boutonCrabe")
+let boutonFantome = document.getElementById("boutonFantome")
+let boutonLivre = document.getElementById("boutonLivre")
+let boutonSucette = document.getElementById("boutonSucette")
+let boutons = document.querySelectorAll(".bouton")
 
- boutonLancerJeu.addEventListener("click", lanceJeu)
+let ImageBonneCouleur = false;
 
- function lanceJeu(){
+boutonLancerJeu.addEventListener("click", lanceJeu)
+
+regleJeu.addEventListener("click", ()=> {
+    console.log("les regles vont s\'afficher");
+    let divRegle = document.createElement("div");
+    divRegle.classList.add("divRegle");
+    divRegle.innerText = "les règles";
+    regleJeu.appendChild(divRegle)
+    
+    document.addEventListener('click', (event) => {
+        if (!regleJeu.contains(event.target)){
+            divRegle.remove();
+        }
+    })
+    
+})
+
+boutons.forEach((element) => {
+        element.addEventListener("click", () => {
+            endroitOuJeu.innerHTML = "";
+            if (ImageBonneCouleur == true) {
+                console.log("c'est gagné");
+            }
+
+            else {
+                console.log("C'est perdu");
+            }
+        }); 
+    });
+
+
+function lanceJeu(){
     lancerDecompteTemps();
- }
+    EnvoiDesCartes();
+}
 
 function donneChiffreHasard() {
-   let chiffreHasard = Math.floor(Math.random()*4)
+    let chiffreHasard = Math.floor(Math.random()*4)
     return chiffreHasard;
 }
 
@@ -37,21 +72,9 @@ function lancerDecompteTemps(){
     }}, 1000)
 }
 
-    // let boutonMontagne = document.getElementById("boutonMontagne")
-    // let boutonCrabe = document.getElementById("boutonCrabe")
-    // let boutonFantome = document.getElementById("boutonFantome")
-    // let boutonLivre = document.getElementById("boutonLivre")
-    // let boutonSucette = document.getElementById("boutonSucette")
-    // let boutons = document.getElementsByClassName("bouton")
+function EnvoiDesCartes(){
+    for (let i=0; i<2; i++){
+        afficherImage("./imagesSansFond/crabeBlanc.png")
+    }
+}
 
-    // boutons.forEach(element => {
-    //     element.addEventListener("click", () => {
-    //         console.log("coucou");
-    //     }); 
-    // });
-
-
-
-for (let i=0; i<2; i++) {
-let carte = new Cartes("","")
-console.log(carte);}

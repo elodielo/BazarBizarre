@@ -66,3 +66,13 @@ header{
     padding: 1%;
     background-color: rgb(255, 255, 255);
 }
+
+.divRegle {
+    background-color: aqua;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    height: 60svh;
+    width: 40svh;
+}
