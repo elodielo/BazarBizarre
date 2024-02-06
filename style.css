@@ -1,9 +1,9 @@
 body {
-    background-color: grey;
+    background-color: rgb(198, 223, 188);
 }
 
 header {
-    border-bottom: 2px solid green ;
+    border-bottom: 5px solid green ;
 }
 
 #decompteScore {
@@ -15,7 +15,7 @@ header {
 }
 
 #compteScore, #decompteTemps {
-    border: 2px solid black;
+    border: 2px solid green;
     padding-right: 10%;}
 
 .enLigne {
@@ -25,9 +25,9 @@ header {
 }
 
 #placeDeJeu {
-    border: 2px solid black;
+    border: 2px solid green;
     border-radius: 3%;
-    height: 50vh;
+    height: 45vh;
     width: 65vw;
     background-color: white;
     display: flex;
@@ -43,7 +43,6 @@ header{
 .centre {
     display: flex;
     flex-direction: column;
-    gap: 10px;
     align-items: center ;
 }
 
@@ -61,18 +60,22 @@ header{
 }
 
 .bouton {
-    border: 2px solid black;
+    border: 2px solid green;
     border-radius: 50%;
     padding: 1%;
     background-color: rgb(255, 255, 255);
 }
 
 .divRegle {
-    background-color: aqua;
+    background-color: rgb(38, 105, 18);
     position: absolute;
     top: 0px;
     left: 0px;
     z-index: 2;
-    height: 60svh;
-    width: 40svh;
+    width: 50svh;
+    margin: 2%;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 2%;
 }

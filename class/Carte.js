@@ -1,36 +1,35 @@
-export class Cartes {
-    couleur
-        
-    constructor(couleur){
-        // this.#forme = forme
-        this.couleur = couleur
-    }
-    
-    // getForme() {
-    //     return this.#forme
-    // }
+export class Carte {
+    #forme
+    #couleur
 
-    // setForme(forme) {
-    //     this.#forme = forme
-    // } 
-    
-    getCouleur() {
-        return this.couleur
+    constructor(forme, couleur) {
+        this.forme = forme;
+        this.couleur = couleur;
+        this.imageAafficher();
+    }
+
+    get forme() {
+        return this.#forme;
     }
     
-    setCouleur(couleur) {
-        this.couleur = couleur
-    } 
-    
-    // creerCarte(){
-    //     const tableauCouleur = ["blanc", "gris", "rouge" ,"vert", "bleu"];
-    //     const tableauForme = ["fantome", "sucette", "montagne", "crabe", "livre"];
-    //     for (let i=0; i<tableauCouleur[i].length; i++){
-    //         let chiffreHasard = Math.floor(Math.random()*tableauCouleur[i].length)
-    //         let Carte = [];
-    //         Carte.push(tableauCouleur[chiffreHasard], tableauForme[chiffreHasard])
-    //         console.log(Carte);
-    //     }
-    // }
-    
-}
+    set forme(forme) {
+        this.#forme = forme;
+    }
+
+    get couleur() {
+        return this.#couleur;
+    }
+
+    set couleur(couleur) {
+        this.#couleur = couleur
+    }
+
+
+    imageAafficher() {
+        let endroitOuJeu = document.getElementById("placeDeJeu");
+        let image = document.createElement("img")
+        image.src = `./images/${this.forme}-${this.couleur}.png`
+        endroitOuJeu.appendChild(image)
+        image.classList.add(this.forme, this.couleur)
+        }
+    }
