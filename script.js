@@ -11,8 +11,10 @@ let boutonFantome = document.getElementById("boutonFantome");
 let boutonLivre = document.getElementById("boutonLivre");
 let boutonSucette = document.getElementById("boutonSucette");
 let boutons = document.querySelectorAll(".bouton");
-
-let ImageBonneCouleur = false;
+let bonChiffreDesHasard = -1;
+let bonneImage = false;
+const formes = ["fantome", "crabe", "sucette", "montagne", "livre"];
+const couleurs = ["blanc", "rouge", "vert", "gris", "bleu"];
 
 boutonLancerJeu.addEventListener("click", lanceJeu);
 
@@ -64,14 +66,48 @@ function lancerDecompteTemps() {
 }
 
 function EnvoiDesCartes() {
-  for (let i = 0; i < 2; i++) {
-    afficherImageAleatoire();
-  }
+  endroitOuJeu.innerHTML = "";
+    afficherImageAleatoire(2);
 }
 
-function afficherImageAleatoire() {
-  const formes = ["fantome", "crabe", "sucette", "montagne", "livre"];
-  const couleurs = ["bleu", "vert", "blanc", "rouge", "gris"];
-  let chiffreHasard = Math.floor(Math.random() * 5);
-  new Carte(formes[chiffreHasard], couleurs[chiffreHasard]);
+function afficherImageAleatoire(nbrCartes) {
+  let ChiffreHasardEnregistreFormes = -1;
+  let ChiffreHasardEnregistreCouleurs = -1;
+  let i = 0;
+  let tableauChiffres = [0,1,2,3,4]
+  while (i < nbrCartes ) {
+    let chiffreHasardFormes = Math.floor(Math.random() * 5);
+    let chiffreHasardCouleurs = Math.floor(Math.random() * 5);
+    if (chiffreHasardFormes != ChiffreHasardEnregistreFormes 
+      && chiffreHasardCouleurs != ChiffreHasardEnregistreCouleurs 
+      && chiffreHasardCouleurs != ChiffreHasardEnregistreFormes
+      && chiffreHasardFormes != ChiffreHasardEnregistreCouleurs){
+          let carte = new Carte(formes[chiffreHasardFormes], couleurs[chiffreHasardCouleurs]);
+          ChiffreHasardEnregistreFormes = chiffreHasardFormes;
+          ChiffreHasardEnregistreCouleurs = chiffreHasardCouleurs;
+          i++;
+          if (chiffreHasardFormes == chiffreHasardCouleurs){
+            bonneImage = true;
+            bonChiffreDesHasard = chiffreHasardFormes
+          }
+          else{
+           tableauChiffres.splice(chiffreHasardCouleurs,chiffreHasardCouleurs);
+           tableauChiffres.splice(chiffreHasardFormes,chiffreHasardFormes);
+// Trouver un moyen de retirer un élement des tableaux!
+              }
+          console.log(tableauChiffres);
+         
+  }
+}
+  if(bonneImage) {
+    console.log(bonChiffreDesHasard);
+  }
+  else{console.log(tableauChiffres[0])}
+
+}
+
+function recupererClasses() {
+  const VraisFormes = ["fantome blanc", "crabe rouge", "sucette vert", "montagne gris", "livre bleu"]
+  let lesImages = endroitOuJeu.querySelectorAll('img')
+
 }
