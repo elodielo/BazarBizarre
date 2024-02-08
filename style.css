@@ -79,3 +79,30 @@ header{
     font-size: 1.5em;
     padding: 2%;
 }
+
+
+.messageReussite{
+    border-radius: 22px;
+    color: green;
+    text-align-last: center;
+    font-size: 3em;
+    position: fixed;
+    border: 4px solid green;
+    width: 65%;
+    height: 9%;
+    background-color: lightgoldenrodyellow;
+    top: 25px;}
+
+
+.messagePerdu {
+    border-radius: 22px;
+    color: red;
+    text-align-last: center;
+    font-size: 3em;
+    position: fixed;
+    border: 4px solid red;
+    width: 65%;
+    height: 9%;
+    background-color: lightgoldenrodyellow;
+    top: 25px;
+}

@@ -12,9 +12,10 @@ let boutonLivre = document.getElementById("boutonLivre");
 let boutonSucette = document.getElementById("boutonSucette");
 let boutons = document.querySelectorAll(".bouton");
 let bonChiffreDesHasard = -1;
-let bonneImage = false;
-const formes = ["fantome", "crabe", "sucette", "montagne", "livre"];
-const couleurs = ["blanc", "rouge", "vert", "gris", "bleu"];
+let bonChiffreDesHasardSiFaux = -1;
+let temps = 30;
+const formes = ["montagne", "crabe", "fantome", "livre", "sucette"];
+const couleurs = ["gris", "rouge", "blanc", "bleu", "vert"];
 
 boutonLancerJeu.addEventListener("click", lanceJeu);
 
@@ -39,12 +40,45 @@ regleJeu.addEventListener("click", () => {
 
 boutons.forEach((element) => {
   element.addEventListener("click", () => {
-    if (ImageBonneCouleur == true) {
-      console.log("c'est gagné");
-    } else {
-      console.log("C'est perdu");
+    if (element.id == "boutonMontagne") {
+      if (bonChiffreDesHasard == 0 || bonChiffreDesHasardSiFaux == 0){
+        messageReussite()
+        IncrementerPoints()
+      }
+      else {messageDefaite()}
+    } 
+
+    else if (element.id == "boutonCrabe") {
+      if (bonChiffreDesHasard == 1 || bonChiffreDesHasardSiFaux == 1){
+        messageReussite()
+        IncrementerPoints()
+      }
+      else {messageDefaite();}
     }
-    endroitOuJeu.innerHTML = "";
+
+    else if (element.id == "boutonFantome") {
+      if (bonChiffreDesHasard == 2 || bonChiffreDesHasardSiFaux == 2){
+        messageReussite()
+        IncrementerPoints()
+      }
+      else {messageDefaite();}
+    }
+
+    else if (element.id == "boutonLivre") {
+      if (bonChiffreDesHasard == 3 || bonChiffreDesHasardSiFaux == 3){
+        messageReussite()
+        IncrementerPoints()
+      }
+      else {messageDefaite();}
+    }
+
+    else if (element.id == "boutonSucette") {
+      if (bonChiffreDesHasard == 4 || bonChiffreDesHasardSiFaux == 4){
+        messageReussite()
+        IncrementerPoints()
+      }
+      else {messageDefaite()}
+    }
   });
 });
 
@@ -54,16 +88,26 @@ function lanceJeu() {
 }
 
 function lancerDecompteTemps() {
-  let temps = 30;
   let interval = setInterval(() => {
     temps = temps - 1;
     endroitTimer.innerText = temps;
-    if (temps == 0) {
+    if (temps == 0 ) {
       endroitTimer.innerText = "Looser";
       clearInterval(interval);
     }
   }, 1000);
 }
+
+function IncrementerPoints(){
+  score = score*temps
+  endroitScore.innerText = "coucou";
+}
+
+function DecrementerPoints(temps) {
+  score = score -10;
+  endroitScore.innerText = score;
+}
+
 
 function EnvoiDesCartes() {
   endroitOuJeu.innerHTML = "";
@@ -75,7 +119,10 @@ function afficherImageAleatoire(nbrCartes) {
   let ChiffreHasardEnregistreCouleurs = -1;
   let i = 0;
   let tableauChiffres = [0,1,2,3,4]
+  let tableauDelimination = []
   while (i < nbrCartes ) {
+    bonChiffreDesHasard = -1
+    bonChiffreDesHasardSiFaux = -1
     let chiffreHasardFormes = Math.floor(Math.random() * 5);
     let chiffreHasardCouleurs = Math.floor(Math.random() * 5);
     if (chiffreHasardFormes != ChiffreHasardEnregistreFormes 
@@ -85,29 +132,45 @@ function afficherImageAleatoire(nbrCartes) {
           let carte = new Carte(formes[chiffreHasardFormes], couleurs[chiffreHasardCouleurs]);
           ChiffreHasardEnregistreFormes = chiffreHasardFormes;
           ChiffreHasardEnregistreCouleurs = chiffreHasardCouleurs;
+          tableauDelimination.push(chiffreHasardCouleurs);
+          tableauDelimination.push(chiffreHasardFormes);
           i++;
+          // console.log(`tableau elimination : ${tableauDelimination}`);
           if (chiffreHasardFormes == chiffreHasardCouleurs){
-            bonneImage = true;
             bonChiffreDesHasard = chiffreHasardFormes
+
+            // pourquoi bonChiffreDesHasard marche tout le temps ?? 
           }
           else{
-           tableauChiffres.splice(chiffreHasardCouleurs,chiffreHasardCouleurs);
-           tableauChiffres.splice(chiffreHasardFormes,chiffreHasardFormes);
-// Trouver un moyen de retirer un élement des tableaux!
+            bonChiffreDesHasardSiFaux = tableauChiffres.filter(function (item) {
+            return tableauDelimination.indexOf(item) == -1;
+          })
               }
-          console.log(tableauChiffres);
-         
-  }
+              // console.log("chiffre hasard couleur " + chiffreHasardCouleurs);
+              // console.log("chiffre hasard forme " + chiffreHasardFormes);
+              console.log("bon chiffre des hasards" + bonChiffreDesHasard);
+              console.log("bon chiffre des hasards si faux" + bonChiffreDesHasardSiFaux);
+            }
 }
-  if(bonneImage) {
-    console.log(bonChiffreDesHasard);
-  }
-  else{console.log(tableauChiffres[0])}
 
 }
 
-function recupererClasses() {
-  const VraisFormes = ["fantome blanc", "crabe rouge", "sucette vert", "montagne gris", "livre bleu"]
-  let lesImages = endroitOuJeu.querySelectorAll('img')
 
+function messageReussite() {  
+  let message = document.createElement("p")
+  message.innerText = "c'est gagne"
+  message.classList.add("messageReussite")
+  endroitOuJeu.appendChild(message)
 }
+
+function messageDefaite() {  
+  let message = document.createElement("p")
+  message.innerText = "c'est perdu"
+  message.classList.add("messagePerdu")
+  endroitOuJeu.appendChild(message)
+}
+
+// creer un nouveau tableau pour mettre les données 
+// const nvTableau = tableauinitial.filter(function (item) {
+//   return tableau.indexOf(item) == -1;
+// })
