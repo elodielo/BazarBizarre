@@ -8,6 +8,7 @@ let endroitRegle = document.getElementById("regleJeu");
 let boutons = document.querySelectorAll(".bouton");
 let bonChiffreDesHasard = -1;
 let temps = 30;
+let score = 0;
 const formes = ["montagne", "crabe", "fantome", "livre", "sucette"];
 const couleurs = ["gris", "rouge", "blanc", "bleu", "vert"];
 
@@ -42,36 +43,41 @@ boutons.forEach((element) => {
     {
       console.log("Yes")
       messageReussite()
-      IncrementerPoints()
+      EcrireScore(IncrementerPoints());
     }
-    else {messageDefaite()}
+    else {messageDefaite()
+      EcrireScore(DecrementerPoints());}
   });
 });
 
 function lanceJeu() {
-  lancerDecompteTemps();
+  // lancerDecompteTemps();
   EnvoiDesCartes();
 }
 
-function lancerDecompteTemps() {
-  let interval = setInterval(() => {
-    temps = temps - 1;
-    endroitTimer.innerText = temps;
-    if (temps == 0 ) {
-      endroitTimer.innerText = "Looser";
-      clearInterval(interval);
-    }
-  }, 1000);
-}
+// function lancerDecompteTemps() {
+//   let interval = setInterval(() => {
+//     temps = temps - 1;
+//     endroitTimer.innerText = temps;
+//     if (temps == 0 ) {
+//       endroitTimer.innerText = "Looser";
+//       clearInterval(interval);
+//     }
+//   }, 1000);
+// }
 
 function IncrementerPoints(){
-  score = score*temps
-  endroitScore.innerText = "coucou";
+  score += 10
+  return score
 }
 
-function DecrementerPoints(temps) {
+function DecrementerPoints() {
   score = score -10;
-  endroitScore.innerText = score;
+  return score
+}
+
+function EcrireScore(score) {
+  endroitScore.innerHTML = score;
 }
 
 
@@ -95,16 +101,14 @@ function afficherImageAleatoire(nbrCartes) {
       && chiffreHasardCouleurs != ChiffreHasardEnregistreFormes
       && chiffreHasardFormes != ChiffreHasardEnregistreCouleurs){
           let carte = new Carte(formes[chiffreHasardFormes], couleurs[chiffreHasardCouleurs]);
-          //ChiffreHasardEnregistreFormes = chiffreHasardFormes;
-          //ChiffreHasardEnregistreCouleurs = chiffreHasardCouleurs;
+
           tableauDelimination.push(chiffreHasardCouleurs);
           tableauDelimination.push(chiffreHasardFormes);
           i++;
-          // console.log(`tableau elimination : ${tableauDelimination}`);
+          
           if (chiffreHasardFormes == chiffreHasardCouleurs) {
             bonChiffreDesHasard = chiffreHasardFormes
-            console.log(bonChiffreDesHasard);
-            // pourquoi bonChiffreDesHasard marche tout le temps ?? 
+           
           }
          else if (ChiffreHasardEnregistreCouleurs == ChiffreHasardEnregistreFormes){
             bonChiffreDesHasard = ChiffreHasardEnregistreCouleurs;
@@ -114,9 +118,7 @@ function afficherImageAleatoire(nbrCartes) {
             return tableauDelimination.indexOf(item) == -1;
           })
               }
-              // console.log("chiffre hasard couleur " + chiffreHasardCouleurs);
-              // console.log("chiffre hasard forme " + chiffreHasardFormes);
-              //console.log("bon chiffre des hasards" + bonChiffreDesHasard);
+  
               ChiffreHasardEnregistreFormes = chiffreHasardFormes;
               ChiffreHasardEnregistreCouleurs = chiffreHasardCouleurs;
             }
