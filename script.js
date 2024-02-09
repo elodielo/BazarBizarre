@@ -22,15 +22,18 @@ regleJeu.addEventListener("click", () => {
   const paragrapheJeu1 = document.createElement("p");
   const paragrapheJeu2 = document.createElement("p");
   const paragrapheJeu3 = document.createElement("p");
+  const paragrapheJeuInit = document.createElement("p")
+  paragrapheJeuInit.innerText = "Deux images vont s'afficher à l'écran. Choisis le bon bouton pour gagner un maximum de points en 1 minute!"
+  
   paragrapheJeu1.innerText =
-    "Si l'image est de la bonne couleur, clique sur l'objet correspondant.";
+    "Si l'image est de la bonne couleur, clique sur le bouton correspondant (La montagne est grise, le crabe est rouge, le fantome est blanc, le livre est bleu et la sucette est verte).";
   paragrapheJeu2.innerText =
-    "Si aucun objet n'est de la bonne couleur, clique sur l'image qui n'est ni de la même forme, ni de la même couleur";
-  paragrapheJeu3.innerText =
-    "Si deux images sont les mêmes, toujours choisir la deuxième";
+  "Si les deux images sont de la bonne couleur, la deuxième doit être choisie.";
+    
+  paragrapheJeu3.innerText ="Si aucun objet n'est de la bonne couleur, clique sur l'image qui n'est représenté ni par sa forme ni par sa couleur.";
   divRegle.classList.add("divRegle");
   regleJeu.appendChild(divRegle);
-  divRegle.append(titreRegle, paragrapheJeu1, paragrapheJeu2, paragrapheJeu3);
+  divRegle.append(titreRegle, paragrapheJeuInit, paragrapheJeu1, paragrapheJeu2, paragrapheJeu3);
   document.addEventListener("click", (event) => {
     if (!regleJeu.contains(event.target)) {
       divRegle.remove();
