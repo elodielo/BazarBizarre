@@ -1,127 +1,127 @@
 body {
-    background-color: rgb(198, 223, 188);
+  background-color: rgb(198, 223, 188);
 }
 
 header {
-    border-bottom: 5px solid green ;
+  border-bottom: 5px solid green;
 }
 
 #decompteScore {
-    margin-right: 6%;
+  margin-right: 6%;
 }
 
 #regleJeu {
-    margin-left : 6%;
+  margin-left: 6%;
 }
 
-#compteScore, #decompteTemps {
-    border: 2px solid green;
-    padding-right: 10%;}
+#compteScore,
+#decompteTemps {
+  border: 2px solid green;
+  padding-right: 10%;
+}
 
 .enLigne {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 #placeDeJeu {
-    border: 2px solid green;
-    border-radius: 3%;
-    height: 48vh;
-    width: 65vw;
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  border: 2px solid green;
+  border-radius: 3%;
+  height: 48vh;
+  width: 65vw;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
-header{
-    display: flex;
-    justify-content: space-between;
+header {
+  display: flex;
+  justify-content: space-between;
 }
 
 .centre {
-    display: flex;
-    flex-direction: column;
-    align-items: center ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #lancerJeu {
-    margin: 1.5em;
-
+  margin: 1.5em;
 }
 
 .bouton img {
-    width: 15vh;   
+  width: 15vh;
 }
 
 #placeJeu img {
-    padding : 5%;
+  padding: 5%;
 }
 
 .bouton {
-    border: 2px solid green;
-    border-radius: 50%;
-    padding: 1%;
-    background-color: rgb(255, 255, 255);
+  border: 2px solid green;
+  border-radius: 50%;
+  padding: 1%;
+  background-color: rgb(255, 255, 255);
 }
 
 .divRegle {
-    background-color: rgb(156, 178, 150);
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 2;
-    width: 50svh;
-    margin: 2%;
-    border-radius: 6px;
-    text-align: center;
-    font-size: 1.5em;
-    padding: 2%;
+  background-color: rgb(156, 178, 150);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  width: 50svh;
+  margin: 2%;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 1.5em;
+  padding: 2%;
 }
 
-
-.messageReussite{
-    border-radius: 22px;
-    color: green;
-    text-align-last: center;
-    font-size: 3em;
-    position: fixed;
-    border: 4px solid green;
-    width: 65%;
-    height: 9%;
-    background-color: lightgoldenrodyellow;
-    top: 25px;}
-
+.messageReussite {
+  border-radius: 22px;
+  color: green;
+  text-align-last: center;
+  font-size: 3em;
+  position: fixed;
+  border: 4px solid green;
+  width: 65%;
+  height: 9%;
+  background-color: lightgoldenrodyellow;
+  top: 25px;
+}
 
 .messagePerdu {
-    border-radius: 22px;
-    color: red;
-    text-align-last: center;
-    font-size: 3em;
-    position: fixed;
-    border: 4px solid red;
-    width: 65%;
-    height: 9%;
-    background-color: lightgoldenrodyellow;
-    top: 25px;
+  border-radius: 22px;
+  color: red;
+  text-align-last: center;
+  font-size: 3em;
+  position: fixed;
+  border: 4px solid red;
+  width: 65%;
+  height: 9%;
+  background-color: lightgoldenrodyellow;
+  top: 25px;
 }
 
 .messageFinDePartie {
-    position: absolute;
-    border: 2px solid green;
-    border-radius: 3%;
-    height: 48vh;
-    width: 65vw;
-    background-color: white;
-    font-size: 2.5em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  border: 2px solid green;
+  border-radius: 3%;
+  height: 48vh;
+  width: 65vw;
+  background-color: white;
+  font-size: 2.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .tailleImage {
-    width: 300px;
-    height: 300px;
+  width: 300px;
+  height: 300px;
 }
