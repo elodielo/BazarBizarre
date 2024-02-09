@@ -160,6 +160,7 @@ function afficherMessageFindePartie(score) {
   let messageFin = document.createElement("p");
   messageFin.innerText = `Partie terminée, tu as ${score} points`;
   boiteFin.classList.add("messageFinDePartie");
+  messageFin.style.textAlign = "center"
   endroitOuJeu.appendChild(boiteFin);
   boiteFin.appendChild(messageFin);
 }
