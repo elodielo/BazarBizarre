@@ -5,14 +5,8 @@ let endroitOuJeu = document.getElementById("placeDeJeu");
 let endroitTimer = document.querySelector("#decompteTemps h3");
 let endroitScore = document.querySelector("#compteScore h3");
 let endroitRegle = document.getElementById("regleJeu");
-let boutonMontagne = document.getElementById("boutonMontagne");
-let boutonCrabe = document.getElementById("boutonCrabe");
-let boutonFantome = document.getElementById("boutonFantome");
-let boutonLivre = document.getElementById("boutonLivre");
-let boutonSucette = document.getElementById("boutonSucette");
 let boutons = document.querySelectorAll(".bouton");
 let bonChiffreDesHasard = -1;
-let bonChiffreDesHasardSiFaux = -1;
 let temps = 30;
 const formes = ["montagne", "crabe", "fantome", "livre", "sucette"];
 const couleurs = ["gris", "rouge", "blanc", "bleu", "vert"];
@@ -26,11 +20,13 @@ regleJeu.addEventListener("click", () => {
   titreRegle.innerText = "les règles";
   const paragrapheJeu1 = document.createElement("p")
   const paragrapheJeu2 = document.createElement("p")
+  const paragrapheJeu3 = document.createElement("p")
   paragrapheJeu1.innerText = "Si l'image est de la bonne couleur, clique sur l'objet correspondant."
   paragrapheJeu2.innerText = "Si aucun objet n'est de la bonne couleur, clique sur l'image qui n'est ni de la même forme, ni de la même couleur"
+  paragrapheJeu3.innerText = "Si deux images sont les mêmes, toujours choisir la deuxième"
   divRegle.classList.add("divRegle");
   regleJeu.appendChild(divRegle);
-  divRegle.append(titreRegle, paragrapheJeu1, paragrapheJeu2)
+  divRegle.append(titreRegle, paragrapheJeu1, paragrapheJeu2, paragrapheJeu3)
   document.addEventListener("click", (event) => {
     if (!regleJeu.contains(event.target)) {
       divRegle.remove();
@@ -39,46 +35,16 @@ regleJeu.addEventListener("click", () => {
 });
 
 boutons.forEach((element) => {
+// 
   element.addEventListener("click", () => {
-    if (element.id == "boutonMontagne") {
-      if (bonChiffreDesHasard == 0 || bonChiffreDesHasardSiFaux == 0){
-        messageReussite()
-        IncrementerPoints()
-      }
-      else {messageDefaite()}
-    } 
-
-    else if (element.id == "boutonCrabe") {
-      if (bonChiffreDesHasard == 1 || bonChiffreDesHasardSiFaux == 1){
-        messageReussite()
-        IncrementerPoints()
-      }
-      else {messageDefaite();}
+    console.log(element.id == "bouton"+formes[bonChiffreDesHasard])
+    if (element.id == "bouton"+formes[bonChiffreDesHasard])
+    {
+      console.log("Yes")
+      messageReussite()
+      IncrementerPoints()
     }
-
-    else if (element.id == "boutonFantome") {
-      if (bonChiffreDesHasard == 2 || bonChiffreDesHasardSiFaux == 2){
-        messageReussite()
-        IncrementerPoints()
-      }
-      else {messageDefaite();}
-    }
-
-    else if (element.id == "boutonLivre") {
-      if (bonChiffreDesHasard == 3 || bonChiffreDesHasardSiFaux == 3){
-        messageReussite()
-        IncrementerPoints()
-      }
-      else {messageDefaite();}
-    }
-
-    else if (element.id == "boutonSucette") {
-      if (bonChiffreDesHasard == 4 || bonChiffreDesHasardSiFaux == 4){
-        messageReussite()
-        IncrementerPoints()
-      }
-      else {messageDefaite()}
-    }
+    else {messageDefaite()}
   });
 });
 
@@ -116,40 +82,43 @@ function EnvoiDesCartes() {
 
 function afficherImageAleatoire(nbrCartes) {
   let ChiffreHasardEnregistreFormes = -1;
-  let ChiffreHasardEnregistreCouleurs = -1;
+  let ChiffreHasardEnregistreCouleurs = -2;
   let i = 0;
   let tableauChiffres = [0,1,2,3,4]
   let tableauDelimination = []
   while (i < nbrCartes ) {
-    bonChiffreDesHasard = -1
-    bonChiffreDesHasardSiFaux = -1
     let chiffreHasardFormes = Math.floor(Math.random() * 5);
     let chiffreHasardCouleurs = Math.floor(Math.random() * 5);
+
     if (chiffreHasardFormes != ChiffreHasardEnregistreFormes 
       && chiffreHasardCouleurs != ChiffreHasardEnregistreCouleurs 
       && chiffreHasardCouleurs != ChiffreHasardEnregistreFormes
       && chiffreHasardFormes != ChiffreHasardEnregistreCouleurs){
           let carte = new Carte(formes[chiffreHasardFormes], couleurs[chiffreHasardCouleurs]);
-          ChiffreHasardEnregistreFormes = chiffreHasardFormes;
-          ChiffreHasardEnregistreCouleurs = chiffreHasardCouleurs;
+          //ChiffreHasardEnregistreFormes = chiffreHasardFormes;
+          //ChiffreHasardEnregistreCouleurs = chiffreHasardCouleurs;
           tableauDelimination.push(chiffreHasardCouleurs);
           tableauDelimination.push(chiffreHasardFormes);
           i++;
           // console.log(`tableau elimination : ${tableauDelimination}`);
-          if (chiffreHasardFormes == chiffreHasardCouleurs){
+          if (chiffreHasardFormes == chiffreHasardCouleurs) {
             bonChiffreDesHasard = chiffreHasardFormes
-
+            console.log(bonChiffreDesHasard);
             // pourquoi bonChiffreDesHasard marche tout le temps ?? 
           }
+         else if (ChiffreHasardEnregistreCouleurs == ChiffreHasardEnregistreFormes){
+            bonChiffreDesHasard = ChiffreHasardEnregistreCouleurs;
+          }
           else{
-            bonChiffreDesHasardSiFaux = tableauChiffres.filter(function (item) {
+            bonChiffreDesHasard = tableauChiffres.filter(function (item) {
             return tableauDelimination.indexOf(item) == -1;
           })
               }
               // console.log("chiffre hasard couleur " + chiffreHasardCouleurs);
               // console.log("chiffre hasard forme " + chiffreHasardFormes);
-              console.log("bon chiffre des hasards" + bonChiffreDesHasard);
-              console.log("bon chiffre des hasards si faux" + bonChiffreDesHasardSiFaux);
+              //console.log("bon chiffre des hasards" + bonChiffreDesHasard);
+              ChiffreHasardEnregistreFormes = chiffreHasardFormes;
+              ChiffreHasardEnregistreCouleurs = chiffreHasardCouleurs;
             }
 }
 
