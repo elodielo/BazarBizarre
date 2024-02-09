@@ -30,6 +30,6 @@ export class Carte {
         let image = document.createElement("img")
         image.src = `./images/${this.forme}-${this.couleur}.png`
         endroitOuJeu.appendChild(image)
-        image.classList.add(this.forme, this.couleur)
+        image.classList.add("tailleImage");
         }
     }

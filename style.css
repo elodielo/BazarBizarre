@@ -27,7 +27,7 @@ header {
 #placeDeJeu {
     border: 2px solid green;
     border-radius: 3%;
-    height: 45vh;
+    height: 48vh;
     width: 65vw;
     background-color: white;
     display: flex;
@@ -105,4 +105,23 @@ header{
     height: 9%;
     background-color: lightgoldenrodyellow;
     top: 25px;
+}
+
+.messageFinDePartie {
+    position: absolute;
+    border: 2px solid green;
+    border-radius: 3%;
+    height: 48vh;
+    width: 65vw;
+    background-color: white;
+    font-size: 2.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tailleImage {
+    width: 300px;
+    height: 300px;
 }

@@ -7,7 +7,7 @@ let endroitScore = document.querySelector("#compteScore h3");
 let endroitRegle = document.getElementById("regleJeu");
 let boutons = document.querySelectorAll(".bouton");
 let bonChiffreDesHasard = -1;
-let temps = 30;
+let temps = 5;
 let score = 0;
 const formes = ["montagne", "crabe", "fantome", "livre", "sucette"];
 const couleurs = ["gris", "rouge", "blanc", "bleu", "vert"];
@@ -41,30 +41,38 @@ boutons.forEach((element) => {
     console.log(element.id == "bouton"+formes[bonChiffreDesHasard])
     if (element.id == "bouton"+formes[bonChiffreDesHasard])
     {
-      console.log("Yes")
       messageReussite()
       EcrireScore(IncrementerPoints());
+      setTimeout(() => EnvoiDesCartes(), 1000)
     }
     else {messageDefaite()
-      EcrireScore(DecrementerPoints());}
+      EcrireScore(DecrementerPoints())
+      setTimeout(() => EnvoiDesCartes(), 1000);}
   });
 });
 
 function lanceJeu() {
-  // lancerDecompteTemps();
   EnvoiDesCartes();
+  lancerDecompteTemps()
+  boutonLancerJeu.removeEventListener('click', lanceJeu)
 }
 
-// function lancerDecompteTemps() {
-//   let interval = setInterval(() => {
-//     temps = temps - 1;
-//     endroitTimer.innerText = temps;
-//     if (temps == 0 ) {
-//       endroitTimer.innerText = "Looser";
-//       clearInterval(interval);
-//     }
-//   }, 1000);
-// }
+function lancerDecompteTemps() {
+  let interval = setInterval(() => {
+    temps = temps - 1;
+    endroitTimer.innerText = temps;
+    if (temps == 0 || temps <0) {
+      endroitTimer.innerText = "Partie terminée";
+      afficherMessageFindePartie(score);
+      clearInterval(interval);
+      temps = 100
+      boutonLancerJeu.addEventListener("click", lanceJeu);
+      score = 0
+      endroitScore.innerText ="score"
+    }
+  }, 1000);
+  
+}
 
 function IncrementerPoints(){
   score += 10
@@ -129,7 +137,7 @@ function afficherImageAleatoire(nbrCartes) {
 
 function messageReussite() {  
   let message = document.createElement("p")
-  message.innerText = "c'est gagne"
+  message.innerText = "c'est gagné !"
   message.classList.add("messageReussite")
   endroitOuJeu.appendChild(message)
 }
@@ -141,7 +149,14 @@ function messageDefaite() {
   endroitOuJeu.appendChild(message)
 }
 
-// creer un nouveau tableau pour mettre les données 
-// const nvTableau = tableauinitial.filter(function (item) {
-//   return tableau.indexOf(item) == -1;
-// })
+function afficherMessageFindePartie(score){
+    let boiteFin = document.createElement("div")
+    let messageFin = document.createElement("p")
+    messageFin.innerText = `Partie terminée, tu as ${score} points`
+    boiteFin.classList.add("messageFinDePartie")
+    endroitOuJeu.appendChild(boiteFin)
+    boiteFin.appendChild(messageFin)
+
+}
+
+
