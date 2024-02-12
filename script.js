@@ -143,7 +143,7 @@ function afficherImageAleatoire(nbrCartes) {
 
 function messageReussite() {
   let message = document.createElement("p");
-  message.innerText = "c'est gagné !";
+  message.innerText = "c'est gagné";
   message.classList.add("messageReussite");
   endroitOuJeu.appendChild(message);
 }
