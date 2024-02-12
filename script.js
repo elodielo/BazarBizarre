@@ -7,7 +7,7 @@ let endroitScore = document.querySelector("#compteScore h3");
 let endroitRegle = document.getElementById("regleJeu");
 let boutons = document.querySelectorAll(".bouton");
 let bonChiffreDesHasard = -1;
-let temps = 60;
+let temps = -1;
 let score = 0;
 const formes = ["montagne", "crabe", "fantome", "livre", "sucette"];
 const couleurs = ["gris", "rouge", "blanc", "bleu", "vert"];
@@ -15,7 +15,6 @@ const couleurs = ["gris", "rouge", "blanc", "bleu", "vert"];
 boutonLancerJeu.addEventListener("click", lanceJeu);
 
 regleJeu.addEventListener("click", () => {
-  console.log("les regles vont s'afficher");
   const divRegle = document.createElement("div");
   const titreRegle = document.createElement("h3");
   titreRegle.innerText = "les règles";
@@ -42,9 +41,9 @@ regleJeu.addEventListener("click", () => {
 });
 
 boutons.forEach((element) => {
-  //
   element.addEventListener("click", () => {
-    console.log(element.id == "bouton" + formes[bonChiffreDesHasard]);
+    console.log(temps)
+    if(temps > 1){
     if (element.id == "bouton" + formes[bonChiffreDesHasard]) {
       messageReussite();
       EcrireScore(IncrementerPoints());
@@ -52,12 +51,14 @@ boutons.forEach((element) => {
     } else {
       messageDefaite();
       EcrireScore(DecrementerPoints());
-      setTimeout(() => EnvoiDesCartes(), 1000);
+      setTimeout(() => EnvoiDesCartes(), 1000);}
     }
   });
 });
 
+
 function lanceJeu() {
+  temps = 61
   EnvoiDesCartes();
   lancerDecompteTemps();
   boutonLancerJeu.removeEventListener("click", lanceJeu);
@@ -71,8 +72,8 @@ function lancerDecompteTemps() {
       endroitTimer.innerText = "Partie terminée";
       afficherMessageFindePartie(score);
       clearInterval(interval);
-      temps = 60;
       boutonLancerJeu.addEventListener("click", lanceJeu);
+      temps = -1;
       score = 0;
       endroitScore.innerText = "score";
     }
