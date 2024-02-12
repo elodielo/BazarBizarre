@@ -121,24 +121,22 @@ header {
   justify-content: center;
 }
 
-
-
-@media only screen and (max-width: 570px){
+@media only screen and (max-width: 570px) {
   .tailleImage {
-  width: 100px;
-  height: 100px;
-}
+    width: 100px;
+    height: 100px;
+  }
 
-.bouton img {
-  width: 7vh;
-}
+  .bouton img {
+    width: 7vh;
+  }
 
-#placeDeJeu {
-  flex-direction: column;
-  align-items: center;
-}
+  #placeDeJeu {
+    flex-direction: column;
+    align-items: center;
+  }
 
-.divRegle {
-  width: 60vw;
-}
+  .divRegle {
+    width: 60vw;
+  }
 }
